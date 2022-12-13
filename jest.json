@@ -1,0 +1,5 @@
+{
+  "rootDir": ".",
+  "globals": {},
+  "testMatch": ["**/test/**/*.test.(js)"]
+}
