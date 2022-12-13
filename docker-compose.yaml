@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mongodb-service:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
+      MONGO_INITDB_DATABASE: $MONGO_DB
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    restart: always
+    volumes:
+      - mongodb-data-service:/data/db
+  api-service:
+    depends_on:
+      - mongodb-service
+    restart: on-failure
+    links:
+      - mongodb-service
+    build: .
+    environment:
+      MONGO_USERNAME: $MONGO_USERNAME
+      MONGO_PASSWORD: $MONGO_PASSWORD
+      MONGO_DB: $MONGO_DB
+      MONGO_HOSTNAME: $MONGO_HOSTNAME
+      MONGO_PORT: $MONGO_PORT
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+    stdin_open: true
+    tty: true
+volumes:
+  app:
+  mongodb-data-service:

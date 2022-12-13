@@ -3,31 +3,28 @@ const Photo = require("../models/photoModel");
 const Query = {
   getPhotos: async (root, { arg }) => {
     try {
-      const photos = await Photo.find(
+      return await Photo.find(
         { $text: { $search: arg } },
         { score: { $meta: "textScore" } }
       ).sort({ score: { $meta: "textScore" } });
-      return photos;
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   },
 
   getPhotoById: async (root, { id }) => {
     try {
-      const photo = await Photo.findOne({ id });
-      return photo;
+      return await Photo.findOne({ id });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   },
 
   getAllPhotos: async () => {
     try {
-      const photos = await Photo.find();
-      return photos;
+        return await Photo.find();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   },
 };
