@@ -4,6 +4,7 @@
   "description": "Backend for pixsy challenge",
   "main": "index.js",
   "scripts": {
+    "build": "docker-compose up --build",
     "start": "node server.js",
     "start:dev": "nodemon server.js"
   },
