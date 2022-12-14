@@ -15,8 +15,9 @@
     "apollo-server": "^3.11.1",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
+    "graphql-rate-limit-directive": "^2.0.3",
     "mongoose": "^6.8.0",
-    "redis": "^4.5.1"
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "jest": "^29.3.1",

@@ -1,4 +1,4 @@
-type Query {
+type Query @rateLimit(limit: 10000, duration: 1) {
   getPhotos(arg: String!): [Photo]
   getAllPhotos: [Photo]
   getPhotoById(id: ID!): Photo
